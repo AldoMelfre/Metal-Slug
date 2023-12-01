@@ -1,0 +1,123 @@
+@startuml
+
+'Controles y ajustess
+Controlador <|-- Teclado
+class Teclado{
+    A
+    S
+    W
+    D
+    E
+    Space
+    Intro
+}
+
+class Menu{
+    + Start()
+    + Opciones()
+    + SeleccionarPersonaje()
+    + Salir()
+}
+
+Jugador o-- Menu
+Jugador o-- Teclado
+Jugador o-- Soldado
+class Jugador{
+    - nombre : string
+    + DefinirNombre()
+}
+'----------
+' Personajes
+class Personaje{
+    + Satar()
+    + Moverse()
+}
+
+class Soldado{
+    + Agacharse()
+}
+
+class Enemigo
+class Prisionero
+
+class Arma {
+    + Disparar()
+}
+'----------
+'Tipo Vehiculos
+class SlugGigant
+class Tanque
+class Avion
+class Armadura
+
+SlugGigant<|-- Vehiculo
+Tanque<|-- Vehiculo
+Avion<|-- Vehiculo
+Armadura<|-- Vehiculo
+
+Soldado o-- SlugGigant
+Soldado o-- Tanque
+Soldado o-- Avion
+Soldado o-- Armadura
+'---------
+'Tipo de Arma
+class LanzaMisil
+class Pistola
+class RifledeAsalto
+'---------
+'Items
+class Bala
+class CajaMunicion
+class Vehiculo
+class ArmaMejora
+class Granada
+class CocheMejora
+class Comida
+class Regalo
+'------
+class Vida
+class Tablero
+class Score
+
+'Relaciones
+Tablero *-- Vida
+Tablero *-- Score
+Tablero *-- Bala
+Tablero *-- Granada
+
+Soldado <|-- Personaje
+Prisionero <|-- Personaje
+Enemigo <|-- Personaje
+
+Soldado o-- Arma
+Soldado *-- Vida
+Soldado *-- Score
+Soldado o-- Comida
+Soldado o-- Regalo
+Arma --* Bala
+Arma --* Granada
+Arma o-- ArmaMejora
+Arma <|-- CajaMunicion
+CajaMunicion *-- Bala
+
+
+
+'Tipos de armas 
+Pistola <|-- Arma
+RifledeAsalto <|-- Arma
+LanzaMisil <|-- Arma
+
+Soldado o-- Vehiculo
+Vehiculo o-- CocheMejora
+Prisionero *-- Regalo
+
+
+Interface Controlador{
+    + Teclear()
+    + Tocar()
+    'Para palancas de arcade
+    + Manejar()
+    'Botones de arcade o controles
+    + Presionar()
+}
+@enduml
