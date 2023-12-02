@@ -1,6 +1,11 @@
 #include <Ventana.hpp>
 #include <Dibujo.hpp>
+#include <Actualizable.hpp>
+#include <Controlador.hpp>
+#include <curses.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
 

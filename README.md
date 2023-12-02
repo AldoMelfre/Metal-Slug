@@ -1,5 +1,7 @@
 # Proyecto
 
+#Aldo Carlo Melo Fregoso
+
 # Metal Slug
 
 ![Metal Slug Logo](https://cdn.milenio.com/uploads/media/2020/06/10/metal-slug-clasico-juegos-arcade.jpg)
@@ -20,6 +22,9 @@ Metal Slug es un juego de acción y disparos clásico desarrollado por SNK. Sum�
 
 - **Gráficos Detallados:** Los gráficos estilo píxel art de alta calidad brindan un aspecto visual impresionante.
 
+## Diagrama
+![Diagrama](/out/docs/proj/proj.png)
+
 ## Capturas de Pantalla
 
 ![Captura de Pantalla 1](https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2023/05/aqua-ippan-3040180.jpg?tf=3840x)
@@ -35,7 +40,7 @@ Metal Slug es un juego de acción y disparos clásico desarrollado por SNK. Sum�
 
 ## Instalación
 
-1. Descarga el juego desde [nuestro sitio web](https://www.metal-slug-game.com/download).
+1. Descarga el juego original desde [el sitio web](https://www.metal-slug-game.com/download).
 2. Ejecuta el archivo de instalación y sigue las instrucciones en pantalla.
 3. ¡Disfruta del juego!
 
@@ -43,13 +48,5 @@ Metal Slug es un juego de acción y disparos clásico desarrollado por SNK. Sum�
 
 Desarrollado por SNK Corporation
 
-## Contacto
-
-Si tienes alguna pregunta o comentario, no dudes en contactarnos en [support@metal-slug-game.com](mailto:support@metal-slug-game.com).
 
 ¡Esperamos que disfrutes jugando Metal Slug y te diviertas enfrentándote a las fuerzas enemigas en esta emocionante aventura de disparos!
-
-
-## Diagrama
-
-![](/out/docs/proj/proj.png)
