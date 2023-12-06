@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <curses.h>
+#include <SFML/Graphics.hpp>
 using namespace std;
 
 class Dibujo

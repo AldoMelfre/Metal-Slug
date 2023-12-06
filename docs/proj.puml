@@ -19,9 +19,9 @@ class Menu{
     + Salir()
 }
 
-Jugador o-- Menu
-Jugador o-- Teclado
-Jugador o-- Soldado
+Jugador --* Menu
+Jugador --* Teclado
+Jugador --* Soldado
 class Jugador{
     - nombre : string
     + DefinirNombre()

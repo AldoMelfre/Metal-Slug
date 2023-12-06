@@ -1,50 +1,24 @@
-#pragma once
-#include <curses.h>
-#include <iostream>
-#include <unistd.h>
+#include <SFML/Graphics.hpp>
 
-class Ventana
+int main()
 {
-private:
-    int x;
-    int y;
-    bool ejecucion;
-    int velocidad;
-    int contador;
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
 
-public:
-    Ventana()
+    while (window.isOpen())
     {
-        initscr();
-        getmaxyx(stdscr, this->y, this->x);
-        this->ejecucion = false;
-        this->velocidad = 10;
-        this->contador = 20;
-        curs_set(FALSE);
-        cbreak();
-        timeout(100);
-        noecho();
-        keypad(stdscr, TRUE);
-    }
-
-    void Actualizar()
-    {
-        this->contador = this->contador - 1;
-        if (this->contador == 0)
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-            this->Cerrar();
+            if (event.type == sf::Event::Closed)
+                window.close();
         }
+
+        window.clear();
+        window.draw(shape);
+        window.display();
     }
-    void Dibujar()
-    {
-        box(stdscr, 'E', 'Z');
-    }
-    void Cerrar()
-    {
-        this->ejecucion = false;
-    }
-    ~Ventana()
-    {
-        endwin();
-    }
-};
+
+    return 0;
+}

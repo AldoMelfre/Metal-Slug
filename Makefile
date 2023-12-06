@@ -1,38 +1,31 @@
-# Directorios de origen y destino
-SRC_DIR := src
-BIN_DIR := bin
+CXX       := g++
+CXX_FLAGS := -Wall -Wextra -Wno-unused-parameter -std=c++17 -ggdb
 
-SFML := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lchipmunk
+BIN     := bin
+SRC     := src
+INCLUDE := include
+LIB     := lib
 
-# Obtener todos los archivos .cpp en el directorio de origen
-CPP_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+LIBRARIES   := -lsfml-graphics -lsfml-window -lsfml-system
+EXECUTABLE  := main
 
-# Generar los nombres de los archivos .exe en el directorio de destino
-EXE_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.exe,$(CPP_FILES))
+MKDIR_P = mkdir -p
 
-# Regla para compilar cada archivo .cpp y generar el archivo .exe correspondiente
-$(BIN_DIR)/%.exe: $(SRC_DIR)/%.cpp
-	g++ $< -o $@ $(SFML) -Iinclude
+.PHONY: directories
 
-# Regla por defecto para compilar todos los archivos .cpp
-all: $(EXE_FILES)
+all: directories $(BIN)/$(EXECUTABLE)
 
-# Regla para ejecutar cada archivo .exe
-run%: $(BIN_DIR)/%.exe
-	./$<
+directories: ${BIN}
 
-# Regla para limpiar los archivos generados
+${BIN}:
+    ${MKDIR_P} ${BIN}
+
+run: clean all
+    clear
+    ./$(BIN)/$(EXECUTABLE)
+
+$(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
+    $(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+
 clean:
-	rm -f $(EXE_FILES)
-
-.PHONY: all clean
-.PHONY: run-%
-
-
-
-bin/main : src/main.cpp include/*.hpp
-	c++ src/main.cpp -I include -o bin/main -lcurses
-
-run : bin/main
-	./bin/main
-
+    -rm $(BIN)/*
