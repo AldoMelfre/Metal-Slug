@@ -24,7 +24,7 @@ private:
 double velocidad = 0.1;
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "DinoChrome");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "MetalSlug");
 
     Personaje character(sf::Vector2f(400, 300), sf::Color::Red);
 

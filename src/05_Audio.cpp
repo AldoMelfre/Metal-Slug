@@ -6,7 +6,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Reproductor de musica");
 
     sf::Music music;
-    if (!music.openFromFile("./assets/music/chulo.ogg"))
+    if (!music.openFromFile("./assets/music/Metal-slug-2-Soundtrack-1-Judgment.ogg"))
     {
         // Error al cargar el archivo de música
         return -1;

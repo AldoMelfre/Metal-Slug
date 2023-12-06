@@ -7,7 +7,7 @@ int main()
 
     // Cargar la fuente de texto TTF
     sf::Font font;
-    if (!font.loadFromFile("./assets/fonts/Sf.ttf"))
+    if (!font.loadFromFile("./assets/fonts/Metal Slug Latino Regular.ttf"))
     {
         // Manejar el error si no se puede cargar la fuente
         return -1;
@@ -15,7 +15,7 @@ int main()
 
     // Cargar una fuente de texto
     sf::Font font2;
-    if (!font2.loadFromFile("./assets/fonts/Sf.ttf"))
+    if (!font2.loadFromFile("./assets/fonts/Metal Slug Latino Regular.ttf"))
     {
         // Manejar el error si no se puede cargar la fuente
         return -1;
@@ -24,14 +24,14 @@ int main()
     // Crear un objeto de texto
     sf::Text text;
     text.setFont(font);
-    text.setString("(Chulo de Bad Gyal Playing)");
-    text.setCharacterSize(10);
-    text.setFillColor(sf::Color::White);
+    text.setString("(Metal Slug Theme Playing)");
+    text.setCharacterSize(20);
+    text.setFillColor(sf::Color::Yellow);
 
     // Crear un objeto de texto LOTR
     sf::Text text2;
     text2.setFont(font2);
-    text2.setString("STREET FIGHTER!");
+    text2.setString("METAL SLUG");
     text2.setCharacterSize(50);
     text2.setPosition(200, 100);
 

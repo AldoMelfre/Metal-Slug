@@ -7,7 +7,7 @@ int main()
 
     // Cargar la imagen desde un archivo
     sf::Texture texture;
-    if (!texture.loadFromFile("./assets/images/MetalSlugPistol.png"))
+    if (!texture.loadFromFile("./assets/images/stage1.png"))
     {
         // Manejar el error si no se puede cargar la imagen
         return -1;
