@@ -1,26 +1,25 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+sf::Color none = sf::Color(0, 0, 0, 0); // Color transparente
 
-class Ryu
+class Soldado
 {
 public:
-
-    Ryu(sf::Vector2f position, sf::Color color)
+    Soldado(sf::Vector2f position, sf::Color color)
     {
-        shape.setSize(sf::Vector2f(50, 50));
-        shape.setPosition(position); // Posición inicial cuadro
-        shape.setFillColor(color);
+        shape.setSize(sf::Vector2f(50, 30));
+        shape.setPosition(100, 0); // Posición inicial cuadro
+        shape.setFillColor(none);
 
         // Cargar la imagen desde un archivo
-        
-        if (!texture.loadFromFile("./assets/images/boss.png"))
+
+        if (!texture.loadFromFile("./assets/images/pack_1_right.png"))
         {
-        
         }
-        
+
         this->sprite = sf::Sprite(texture);
-        this->sprite.setPosition(position); // Posición inicial sprite
+        this->sprite.setPosition(20, 230); // Posición inicial sprite
     }
 
     void move(float offsetX, float offsetY)
@@ -35,14 +34,21 @@ public:
         window.draw(this->sprite);
     }
 
-    void update(){
+    void update()
+    {
         // Actualizar el frame de la animación
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 70) + 1, 0, 56, 100));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 100) + 1, 0, 30, 40));
             clock.restart();
         }
+    }
+ 
+    //DEFINIENDO LA ESCALA DE LOS SPRITES COMO VARIABLE
+    void setScale(float scaleX, float scaleY)
+    {
+        sprite.setScale(scaleX, scaleY);
     }
 
 private:
@@ -50,30 +56,28 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock clock;
-    float frameTime = 0.1f; // Tiempo entre cada frame en segundos
+    float frameTime = 0.08f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
-    int numFrames = 4; // Número total de frames en la animación
-    int frameWidth = 32;
-    int frameHeight = 32;
+    int numFrames = 8; // Número total de frames en la animación
+    int frameWidth = 33;
+    int frameHeight = 30;
 };
 
-class Ken
+class Boss
 {
 public:
-
-    Ken(sf::Vector2f position, sf::Color color)
+    Boss(sf::Vector2f position, sf::Color color)
     {
-        shape.setSize(sf::Vector2f(50, 50));
-        shape.setPosition(position); // Posición inicial cuadro
-        shape.setFillColor(color);
+        shape.setSize(sf::Vector2f(33, 40));
+        shape.setPosition(1500, 10); // Posición inicial cuadro
+        shape.setFillColor(none);
 
         // Cargar la imagen desde un archivo
-        
-        if (!texture.loadFromFile("./assets/images/pack_1_right.png"))
+
+        if (!texture.loadFromFile("./assets/images/boss.png"))
         {
-        
         }
-        
+
         this->sprite = sf::Sprite(texture);
         this->sprite.setPosition(position); // Posición inicial sprite
     }
@@ -90,12 +94,13 @@ public:
         window.draw(this->sprite);
     }
 
-    void update(){
+    void update()
+    {
         // Actualizar el frame de la animación
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 70) + 1208, 680, 53, 100));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 70) + 1, 680, 40, 70));
             clock.restart();
         }
     }
@@ -108,8 +113,8 @@ private:
     float frameTime = 0.1f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
     int numFrames = 11; // Número total de frames en la animación
-    int frameWidth = 32;
-    int frameHeight = 32;
+    int frameWidth = 40;
+    int frameHeight = 40;
 };
 
 double velocidad = 0.1;
@@ -122,7 +127,7 @@ int main()
         // Manejar el error si no se puede cargar la imagen
         return -1;
     }
-     // Crear un sprite y asignarle la textura
+    // Crear un sprite y asignarle la textura
     sf::Sprite sprite(texture);
 
     sf::Music music;
@@ -150,10 +155,14 @@ int main()
     text2.setPosition(150, 100);
     text2.setFillColor(sf::Color::Red);
 
-    sf::RenderWindow window(sf::VideoMode(1800, 400), "Metal Slug");
+    sf::RenderWindow window(sf::VideoMode(1800, 300), "Metal Slug");
 
-    Ryu pika(sf::Vector2f(200, 300), sf::Color::Red);
-    Ken pikachu(sf::Vector2f(600, 300), sf::Color::Red);
+    Soldado prota(sf::Vector2f(200, 300), sf::Color::Red);
+    Boss jefe(sf::Vector2f(700, 250), sf::Color::Red);
+
+    //Tamano del sprite reescalado
+    prota.setScale(1.5f, 1.5f); 
+    // jefe.setScale(1.5f, 1.5f); 
 
     while (window.isOpen())
     {
@@ -166,53 +175,48 @@ int main()
             }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-            pika.move(velocidad * -1, 0);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            pika.move(velocidad, 0);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            pika.move(0, velocidad * -1);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            pika.move(0, velocidad);
-        }
-
-
-         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        {
-            pikachu.move(velocidad * -1, 0);
+            prota.move(velocidad * -1, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            pikachu.move(velocidad, 0);
+            prota.move(velocidad, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
-            pikachu.move(0, velocidad * -1);
+            prota.move(0, velocidad * -1);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
-            pikachu.move(0, velocidad);
+            prota.move(0, velocidad);
         }
 
-
-        
-
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            jefe.move(velocidad * -1, 0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            jefe.move(velocidad, 0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            jefe.move(0, velocidad * -1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            jefe.move(0, velocidad);
+        }
 
         // Actualizar animacion pikachu
-        pika.update();
-        pikachu.update();
+        prota.update();
+        jefe.update();
 
         window.clear();
         window.draw(sprite);
-        pika.draw(window);
-        pikachu.draw(window);
+        prota.draw(window);
+        jefe.draw(window);
         window.draw(text2);
         window.display();
 

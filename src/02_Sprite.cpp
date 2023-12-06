@@ -7,7 +7,7 @@ int main()
 
     // Cargar la imagen desde un archivo
     sf::Texture texture;
-    if (!texture.loadFromFile("./assets/images/boss.png"))
+    if (!texture.loadFromFile("./assets/images/pack_1_right.png"))
     {
         // Manejo de error si no se puede cargar la imagen
         return -1;
@@ -15,14 +15,14 @@ int main()
 
     // Crear un sprite y asignarle la textura
     sf::Sprite sprite(texture);
-    sprite.setPosition(200, 300);
+    sprite.setPosition(34, 110);
 
     sf::Clock clock;
     float frameTime = 0.1f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
     int numFrames = 12; // Número total de frames en la animación
     int frameWidth = 32;
-    int frameHeight = 32;
+    int frameHeight = 33;
 
     while (window.isOpen())
     {
