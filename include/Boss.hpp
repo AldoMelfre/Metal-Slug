@@ -1,22 +1,22 @@
 
 
-class Soldado
+class Boss
 {
 public:
-    Soldado(sf::Vector2f position, sf::Color color)
+    Boss(sf::Vector2f position, sf::Color color)
     {
-        shape.setSize(sf::Vector2f(50, 30));
-        shape.setPosition(100, 0); // Posición inicial cuadro
+        shape.setSize(sf::Vector2f(33, 40));
+        shape.setPosition(1500, 10); // Posición inicial cuadro
         shape.setFillColor(none);
 
         // Cargar la imagen desde un archivo
 
-        if (!texture.loadFromFile("./assets/images/pack_1_right.png"))
+        if (!texture.loadFromFile("./assets/images/boss.png"))
         {
         }
 
         this->sprite = sf::Sprite(texture);
-        this->sprite.setPosition(20, 230); // Posición inicial sprite
+        this->sprite.setPosition(position); // Posición inicial sprite
     }
 
     void move(float offsetX, float offsetY)
@@ -37,15 +37,9 @@ public:
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 100) + 1, 0, 30, 40));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 107) + 3, 107, 81, 49));
             clock.restart();
         }
-    }
- 
-    //DEFINIENDO LA ESCALA DE LOS SPRITES COMO VARIABLE
-    void setScale(float scaleX, float scaleY)
-    {
-        sprite.setScale(scaleX, scaleY);
     }
 
 private:
@@ -54,9 +48,9 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock clock;
-    float frameTime = 0.08f; // Tiempo entre cada frame en segundos
+    float frameTime = 0.1f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
-    int numFrames = 8; // Número total de frames en la animación
-    int frameWidth = 33;
-    int frameHeight = 30;
+    int numFrames = 11; // Número total de frames en la animación
+    int frameWidth = 40;
+    int frameHeight = 40;
 };
